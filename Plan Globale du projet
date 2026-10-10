@@ -1,0 +1,30 @@
+Main
+↳Création du fichier/Editer/Sauvegarder
+    ↳Charger -> Visualiser l'image
+                    ↳ Prévisualisations dans le terminal ? (Fonctionalité bonus pour le rendu)(A chaque changement ?)
+                    ↳ Affichage final sur un fichier SVG
+                
+                
+
+
+Fonctionnalité (Bonus) ;
+    Avoir une couleur de train ou de fond précis             (Facile)
+    Déplacer les formes au coordonnées X ou Y                (Moyen, réassignement des valeur de départ/modifier les coordonnés)
+    Pivoté                                                   (Moyen, similaire à au-dessus mais demande une réflexion plus poussé/ Surout les groupes de formes)
+    Inverser/ changement par rapport à un axe de symétrie    (Moyen)
+                
+
+
+Probleme :
+    2 figure se croise ?
+    couper /hors-image ?
+    Comment schematiser les forme ? ;
+        ↳Structure / Union
+            ↳ Paramètre ?
+            
+
+
+Solutions :
+    Stocker les coordonées 
+    ↳ Valeur évolutive
+        ↳ Tableau dynamique => liste chainée
