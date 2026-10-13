@@ -6,68 +6,68 @@ int main(void)
     return 0;
 }
 
-int choixForme(void)
+int formChoice(void)
 {
-    char formeCorrect = 'n';
-    char choixCorrect = 'n';
+    char correctForm = 'n';
+    char correctChoice = 'n';
     do
     {
-        int forme;
-        int choix;
+        int form;
+        int choice;
 
-        printf("De quoi avez vous besoin ?\n ");
-        printf("1 pour un cercle ou une elipse\n");
-        printf("2 pour n'importe quel polygone \n");
-        printf("3 pour un enchainement de ligne, chemin ou ligne simple\n");
-        printf("4 pour un rassemblement de plusieurs formes\n");
+        printf("What do you need  ?\n ");
+        printf("1 for a circle or an elipse\n");
+        printf("2 for any polygon \n");
+        printf("3 for multiple line, a simple line or a path\n");
+        printf("4 to create a group of several form\n");
         
-        scanf("%1d", &forme);
-        switch(forme)
+        scanf("%1d", &form);
+        switch(form)
         {
             case 1:  do {
-                    printf("Avez-vous besoin d'un cercle (1) ou d'une elipse(2) ? \n");    // Demander a l'utilisateur ce qu'il a besoin parmis la selection disponible ; puis demander la taille, angles
-                        scanf("%1d", &choix);
-                        switch (choix)
+                    printf("Do you need a circle (1) or an elipse(2) ? \n");    // Ask the user what a need among the possibilities 
+                        scanf("%1d", &choice);
+                        switch (choice)
                         {
                             case 1: circle(); break;
                             case 2: elipse(); break;
-                            default: printf("Valeur invalide veuillez recommencer\n");
+                            default: printf("Invalid value you may restart\n");
                         }
-                    } while  (choixCorrect == 'n');
+                    } while  (correctChoice == 'n');
             case 2:  do {
-                    printf("Avez-vous besoin d'un triangle (1) ou d'un rectangle(2) ou autre chose(3) ? \n");    // Demander le nombre de points voulu ; cas particulier pour carre et rectangle 
-                        scanf("%1d", &choix);
-                        switch (choix)
+                    printf("Do you need a triangle (1) a rectangle(2) or something else(3) ? \n");    // Ask the user what a need among the possibilities  
+                        scanf("%1d", &choice);
+                        switch (choice)
                         {
                             case 1: triangle(); break;
                             case 2: rectangle(); break;
-                            case 3: polygone(); break;
-                            default: printf("Valeur invalide veuillez recommencer\n");
+                            case 3: polygon(); break;
+                            default: printf("Invalid value you may restart\n");
                         }
-                    } while  (choixCorrect == 'n');
+                    } while  (correctChoice == 'n');
             
             case 3: do {
-                    printf("Avez-vous besoin d'une seule ligne(1) ou de plusieurs ligne(2) ou de ligne type chemin(3) ? \n");    // Demander a l'utilisateur ce qu'il a besoin parmis la selection disponible ; puis demander la longeur des lignes et/ou le nombre de lignes 
+                    printf("Do you need a single line(1) ,several line(2) or path-like line(3) ? \n");    // Ask the user what a need among the possibilities  
             
-                        scanf("%1d", &choix);
-                        switch (choix)
+                        scanf("%1d", &choice);
+                        switch (choice)
                         {
-                            case 1: triangle(); break;
-                            case 2: rectangle(); break;
-                            case 3: polygone(); break;
-                            default: printf("Valeur invalide veuillez recommencer\n");
+                            case 1: single_line(); break;
+                            case 2: several_line(); break;
+                            case 3: path(); break;
+                            default: printf("Invalid value you may restart\n");
                         }
-                    } while  (choixCorrect == 'n'); 
+                    } while  (correctChoice == 'n'); 
             
             case 4:
-                        int nbFormes;
-                        printf("Combien de forme avez vous besoin ? \n");    // Demander le nombre de forme voulu ; relancer la fonction pour avoir les formes voulus et jsp 
-                        scanf("%d", &nbFormes);
-                        for(int i = 0; i = nbFormes; i++)
+                        int formNb;
+                        printf("How many form do you want ? \n");    // Ask the number of form wanted ; relancer la fonction pour avoir les formes voulus et jsp 
+                        scanf("%d", &formNb);
+                        for(int i = 0; i = formNb; i++)
                         {
-                            choixForme();  // A terminer ; besoin de liste chainée pour augmenter la taille du tableau pour ajouter un nouveau groupe de forme
+                            formChoice();  // A terminer ; besoin de liste chainée pour augmenter la taille du tableau pour ajouter un nouveau groupe de forme
                         }
-            default: printf("Valeur invalide veuillez recommencer\n"); break;
+            default: printf("Invalid value you may restart\n"); break;
         }
-    } while (formeCorrect == 'n');
+    } while (correctForm == 'n');
 }
