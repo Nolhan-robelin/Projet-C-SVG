@@ -5,6 +5,44 @@
 int mainMenu(void)
 {
     //Main menu where user is asked if  he want to create/Load/save or edit a shape/file
+    char correctChoice = 'n';
+    char correctFile = 'n';
+do {
+        int file;
+        printf("Do you want to create a new file(1) or use an existing one(2) ?\n");
+        scanf("%d", file);
+            switch(file)
+            {
+                case 1: if (createFile() == 1)
+                            correctFile = 'y';
+                
+                case 2: if (openFile() == 1){
+                            correctFile = 'y';        
+                                    do {
+                                        printf("What do you want to do?\n");
+                                        printf("1 to create a new form\n");
+                                        printf("2 to edit a form\n");
+                                        printf("3 to save the file\n");
+                                        printf("4 to exit (without saving)\n");
+
+                                        int choice;
+                                        scanf("%d", &choice);
+                                        switch(choice)
+                                        {
+                                            case 1: formChoice(); break;
+
+                                            case 2: edit(); break;
+
+                                            case 3: save(); break;
+
+                                            case 4: printf("Have a good day !\n"); break;
+
+                                        }
+                                    } while(correctChoice == 'n');
+                            }
+                default: printf("Invalid number you may try again\n");
+        }
+    } while(correctFile == 'n');
 }
 
 int formChoice(void)
