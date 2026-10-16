@@ -1,9 +1,8 @@
 typedef struct elipse_s
 {
-    unsigned int x;
-    unsigned int y;
+    unsigned int cx;
+    unsigned int cy;
     
-    unsigned int radiusShort;
-    unsigned int radiusLong;
-
+    unsigned int rx;
+    unsigned int ry;
 } elipse_t;

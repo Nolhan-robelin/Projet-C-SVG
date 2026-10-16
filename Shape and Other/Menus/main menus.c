@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "main menus.h"
+#include "../Shape/Shape modifier/node.h"
 
 int mainMenu(void)
 {
@@ -13,11 +14,16 @@ do {
         scanf("%d", file);
             switch(file)
             {
-                case 1: if (createFile() == 1)
-                            correctFile = 'y';
+                case 1: if (createFile() == 1); break;
                 
                 case 2: if (openFile() == 1){
-                            correctFile = 'y';        
+                                int nbForm = 0;
+                                int value[] = {nbForm};
+                                NodeValue* listValue = createNodeValue(value);
+                                NodeName* listName = createNodeName("Début du fichier");
+
+                                correctFile = 'y';  
+                                      
                                     do {
                                         printf("What do you want to do?\n");
                                         printf("1 to create a new form\n");
@@ -38,11 +44,12 @@ do {
                                             case 4: printf("Have a good day !\n"); break;
 
                                         }
-                                    } while(correctChoice == 'n');
+                                        
+                                    } while(correctChoice == 'n'); break;
                             }
-                default: printf("Invalid number you may try again\n");
+            default: printf("Invalid number you may try again\n"); break;
         }
-    } while(correctFile == 'n');
+} while(correctFile == 'n');
 }
 
 int formChoice(void)
@@ -58,7 +65,7 @@ int formChoice(void)
         printf("1 for a circle or an elipse\n");
         printf("2 for any polygon \n");
         printf("3 for multiple line, a simple line or a path\n");
-        printf("4 to create a group of several form\n");
+        // printf("4 to create a group of several form\n");
         
         scanf("%1d", &form);
         switch(form)
@@ -74,7 +81,7 @@ int formChoice(void)
                         }
                     } while  (correctChoice == 'n');
             case 2:  do {
-                    printf("Do you need a triangle (1) a rectangle(2) or a polygon(3) ? \n");    // Ask the user what a need among the possibilities  
+                    printf("Do you need a rectangle(1) or a polygon(2) ? \n");    // Ask the user what a need among the possibilities  
                         scanf("%1d", &choice);
                         switch (choice)
                         {
@@ -98,6 +105,7 @@ int formChoice(void)
                         }
                     } while  (correctChoice == 'n'); 
             
+            /*
             case 4:
                         int formNb;
                         printf("How many form do you want ? \n");    // Ask the number of form wanted ; relancer la fonction pour avoir les formes voulus et jsp 
@@ -106,6 +114,7 @@ int formChoice(void)
                         {
                             formChoice();  // A terminer ; besoin de liste chainée pour augmenter la taille du tableau pour ajouter un nouveau groupe de forme
                         }
+            */
             default: printf("Invalid value you may restart\n"); break;
         }
     } while (correctForm == 'n');
