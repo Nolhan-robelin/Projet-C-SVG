@@ -4,8 +4,7 @@
 #include "../Shape/elipse.h"
 #include "../Shape/line.h"
 #include "../Shape/rectangle.h"
-#include "../Shape/polygon.h"
-#include "../Shape/Shape modifier/node.h"
+#include "../Shape/Shape_modifier/node.h"
 
 extern NodeValue* listValue;
 extern NodeName* listName;

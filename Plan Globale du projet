@@ -2,8 +2,7 @@ Main
 ↳Création du fichier/Editer/Sauvegarder
     ↳Charger -> Visualiser l'image
                     ↳ Prévisualisations dans le terminal ? (Fonctionalité bonus pour le rendu)(A chaque changement ?)
-                    ↳ Affichage final sur un fichier SVG
-                
+                    ↳ Affichage final sur un fichier HTML
                 
 
 

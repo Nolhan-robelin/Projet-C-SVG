@@ -47,7 +47,7 @@ void formList(NodeValue* headValue, NodeName* headName) {
         else if (actualName == "Elipse") 
             viewElipse(liveValue, liveName);
 
-        if (actualName == "Line") 
+        else if (actualName == "Line") 
             viewLine(liveValue, liveName);
         
         else if (actualName == "Rectangle") 
@@ -86,4 +86,53 @@ void freeList(int index, NodeValue* headValue, NodeName* headName) {
     free(delValue);
 }
 
+void modifyShape(NodeValue* headValue, NodeName* headName)
+{
+    NodeValue* liveValue = headValue;
+    NodeValue* tempValue = NULL;
+    NodeName* liveName = headName;
+    NodeName* tempName = NULL;
 
+    int newData[4];
+    int index;
+
+    printf("Which shape do you want to modify(Index)");
+    scanf("%d", &index);
+    
+    int actualindex = liveValue->data;
+    
+    while (actualindex != index) {
+        tempValue = liveValue->next;
+        liveValue = tempValue;
+        tempName = liveName;
+        liveName = tempName;
+    }
+    
+    char actualName = liveName->data;
+
+    if (actualName == "Circle") 
+    {
+        for(int i = 0;i < 3; i++)
+            scanf("%d", newData[i]);
+    }
+
+    else if (actualName == "Elipse") 
+    {
+        for(int i = 0;i < 4; i++)
+            scanf("%d", newData[i]);
+    }
+    
+    if (actualName == "Line") 
+    {
+        for(int i = 0;i < 4; i++)
+            scanf("%d", newData[i]);
+    }
+    
+    else if (actualName == "Rectangle") 
+    {
+        for(int i = 0;i < 4; i++)
+            scanf("%d", newData[i]);
+    }
+
+    liveValue->data = newData;
+}

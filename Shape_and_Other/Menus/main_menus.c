@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "main menus.h"
-#include "../Shape/Shape modifier/node.h"
+#include "main_menus.h"
+#include "../Shape/Shape_modifier/node.h"
+#include "../Main_function/creation.h"
+#include "../Shape/shape.h"
 
 int mainMenu(void)
 {
@@ -11,12 +13,12 @@ int mainMenu(void)
 do {
         int file;
         printf("Do you want to create a new file(1) or use an existing one(2) ?\n");
-        scanf("%d", file);
+        scanf("%d", &file);
             switch(file)
             {
-                case 1: if (createFile() == 1); break;
+                case 1: createFile() ; break;
                 
-                case 2: if (openFile() == 1){
+                case 2: openFile();
                                 int nbForm = 0;
                                 int value[] = {nbForm};
                                 NodeValue* listValue = createNodeValue(value);
@@ -37,19 +39,20 @@ do {
                                         {
                                             case 1: formChoice(); break;
 
-                                            case 2: edit(); break;
+                                            case 2: modifyShape(listValue, listName); break;
 
-                                            case 3: save(); break;
+                                            case 3: break;
 
                                             case 4: printf("Have a good day !\n"); break;
 
                                         }
                                         
                                     } while(correctChoice == 'n'); break;
-                            }
+            
             default: printf("Invalid number you may try again\n"); break;
         }
 } while(correctFile == 'n');
+return 0;
 }
 
 int formChoice(void)
@@ -70,40 +73,44 @@ int formChoice(void)
         scanf("%1d", &form);
         switch(form)
         {
-            case 1:  do {
+            case 1: correctForm = 'y'; 
+                    do {
                     printf("Do you need a circle (1) or an elipse(2) ? \n");    // Ask the user what a need among the possibilities 
                         scanf("%1d", &choice);
                         switch (choice)
                         {
-                            case 1: circle(); break;
-                            case 2: elipse(); break;
+                            case 1: correctChoice = 'y'; circle(); break;
+                            case 2: correctChoice = 'y'; elipse(); break;
                             default: printf("Invalid value you may restart\n");
                         }
-                    } while  (correctChoice == 'n');
-            case 2:  do {
+                    } while  (correctChoice == 'n');break ;
+
+            case 2: correctForm = 'y';  
+                    do {
                     printf("Do you need a rectangle(1) or a polygon(2) ? \n");    // Ask the user what a need among the possibilities  
                         scanf("%1d", &choice);
                         switch (choice)
                         {
-                            case 1: triangle(); break;
-                            case 2: rectangle(); break;
-                            case 3: polygon(); break;
+                            case 1: correctChoice = 'y'; rectangle(); break;
+                            // case 2: polygon(); break;
                             default: printf("Invalid value you may restart\n");
                         }
-                    } while  (correctChoice == 'n');
+                    } while  (correctChoice == 'n'); break;
             
-            case 3: do {
-                    printf("Do you need a single line(1) ,several line(2) or path-like line(3) ? \n");    // Ask the user what a need among the possibilities  
+            
+            case 3: correctForm = 'y'; 
+                    do {
+                    printf("Do you need a single line(1) ? \n");    // Ask the user what a need among the possibilities  
             
                         scanf("%1d", &choice);
                         switch (choice)
                         {
-                            case 1: single_line(); break;
-                            case 2: several_line(); break;
-                            case 3: path(); break;
+                            case 1: correctChoice = 'y'; line(); break;
+                            // case 2: several_line(); break;
+                            // case 3: path(); break;
                             default: printf("Invalid value you may restart\n");
                         }
-                    } while  (correctChoice == 'n'); 
+                    } while  (correctChoice == 'n'); break;
             
             /*
             case 4:

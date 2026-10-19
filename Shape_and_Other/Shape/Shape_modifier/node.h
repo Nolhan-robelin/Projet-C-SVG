@@ -23,4 +23,6 @@ void formList(NodeValue* headValue, NodeName* headName);
 
 void freeList(int index, NodeValue* headValue, NodeName* headName);
 
+void modifyShape(NodeValue* headValue, NodeName* headName);
+
 #endif
