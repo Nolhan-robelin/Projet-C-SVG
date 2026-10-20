@@ -1,7 +1,8 @@
+/* 
 #include <stdio.h>
 #include <stdlib.h>
 
-int colorFill(void)
+void colorFill(void)
 {
     //Function where the user is asked is he want to color the outline and/or the background or set it as default (Black) 
     unsigned char redBackground;
@@ -10,9 +11,11 @@ int colorFill(void)
     
 }
 
-int colorStroke(void)
+void colorStroke(void)
 {
     unsigned char redOutline;
     unsigned char greenOutline;
     unsigned char blueOutline;
 }
+
+*/

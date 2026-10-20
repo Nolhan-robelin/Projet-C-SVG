@@ -12,17 +12,19 @@ int mainMenu(void)
     char correctFile = 'n';
 do {
         int file;
-        printf("Do you want to create a new file(1) or use an existing one(2) ?\n");
+        printf("Do you want to edit the file(2) ?\n");
         scanf("%d", &file);
             switch(file)
             {
-                case 1: createFile() ; break;
+                case 1: break;
                 
                 case 2: openFile();
                                 int nbForm = 0;
                                 int value[] = {nbForm};
+                                char* style[] = {"black"};
                                 NodeValue* listValue = createNodeValue(value);
                                 NodeName* listName = createNodeName("Début du fichier");
+                                NodeStyle* listStyle = createNodeStyle(style);
 
                                 correctFile = 'y';  
                                       
@@ -30,18 +32,18 @@ do {
                                         printf("What do you want to do?\n");
                                         printf("1 to create a new form\n");
                                         printf("2 to edit a form\n");
-                                        printf("3 to save the file\n");
+                                        printf("3 to view the file\n");
                                         printf("4 to exit (without saving)\n");
 
                                         int choice;
                                         scanf("%d", &choice);
                                         switch(choice)
                                         {
-                                            case 1: formChoice(); break;
+                                            case 1: nbForm = formChoice(nbForm, listName, listValue, listStyle); break;
 
-                                            case 2: modifyShape(listValue, listName); break;
+                                            case 2: modifyShape(listValue, listName, listStyle); break;
 
-                                            case 3: break;
+                                            case 3: viewFile(listName, listValue, listStyle); break;
 
                                             case 4: printf("Have a good day !\n"); break;
 
@@ -55,16 +57,18 @@ do {
 return 0;
 }
 
-int formChoice(void)
+int formChoice(int nbForm, NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
 {
     char correctForm = 'n';
     char correctChoice = 'n';
     do
     {
+        formList(listValue, listName, listStyle);
+        
         int form;
         int choice;
 
-        printf("What do you need  ?\n ");
+        printf("What do you need  ?\n");
         printf("1 for a circle or an elipse\n");
         printf("2 for any polygon \n");
         printf("3 for multiple line, a simple line or a path\n");
@@ -79,19 +83,19 @@ int formChoice(void)
                         scanf("%1d", &choice);
                         switch (choice)
                         {
-                            case 1: correctChoice = 'y'; circle(); break;
-                            case 2: correctChoice = 'y'; elipse(); break;
+                            case 1: correctChoice = 'y'; nbForm = circle(nbForm, listName, listValue, listStyle); break;
+                            case 2: correctChoice = 'y'; nbForm = elipse(nbForm, listName, listValue, listStyle); break;
                             default: printf("Invalid value you may restart\n");
                         }
                     } while  (correctChoice == 'n');break ;
 
             case 2: correctForm = 'y';  
                     do {
-                    printf("Do you need a rectangle(1) or a polygon(2) ? \n");    // Ask the user what a need among the possibilities  
+                    printf("Do you need a rectangle(1) or a polygon(2) ? \n");    // Ask the user what he need among the possibilities  
                         scanf("%1d", &choice);
                         switch (choice)
                         {
-                            case 1: correctChoice = 'y'; rectangle(); break;
+                            case 1: correctChoice = 'y'; nbForm = rectangle(nbForm, listName, listValue, listStyle); break;
                             // case 2: polygon(); break;
                             default: printf("Invalid value you may restart\n");
                         }
@@ -105,7 +109,7 @@ int formChoice(void)
                         scanf("%1d", &choice);
                         switch (choice)
                         {
-                            case 1: correctChoice = 'y'; line(); break;
+                            case 1: correctChoice = 'y'; nbForm = line(nbForm, listName, listValue, listStyle); break;
                             // case 2: several_line(); break;
                             // case 3: path(); break;
                             default: printf("Invalid value you may restart\n");
@@ -125,4 +129,5 @@ int formChoice(void)
             default: printf("Invalid value you may restart\n"); break;
         }
     } while (correctForm == 'n');
+    return nbForm;
 }

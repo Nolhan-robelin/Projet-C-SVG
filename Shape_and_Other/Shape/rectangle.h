@@ -5,4 +5,7 @@ typedef struct rectangle_s
     
     unsigned int width;
     unsigned int height;
+        
+    char* stroke;
+    char* fill;
 } rectangle_t;

@@ -5,4 +5,7 @@ typedef struct elipse_s
     
     unsigned int rx;
     unsigned int ry;
+    
+    char* stroke;
+    char* fill;
 } elipse_t;

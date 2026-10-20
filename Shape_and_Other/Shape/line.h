@@ -5,4 +5,6 @@ typedef struct line_s
 
     unsigned int y1;
     unsigned int y2;
+        
+    char* stroke;
 } line_t;

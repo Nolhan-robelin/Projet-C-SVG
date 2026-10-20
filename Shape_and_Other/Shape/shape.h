@@ -2,24 +2,24 @@
 #define SHAPE_H
 #include "../Shape/Shape_modifier/node.h"
 
-int circle(void);
+int circle(int nbForm, NodeName* listName, NodeValue* listValue, NodeStyle* listStyle);
 
-int viewCircle(NodeValue* liveValue, NodeName* liveName);
-
-
-int elipse(void);
-
-int viewElipse(NodeValue* liveValue, NodeName* liveName);
+void viewCircle(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyle);
 
 
-int line(void);
+int elipse(int nbForm, NodeName* listName, NodeValue* listValue, NodeStyle* listStyle);
 
-int viewLine(NodeValue* liveValue, NodeName* liveName);
+void viewElipse(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyle);
 
 
-int rectangle(void);
+int line(int nbForm, NodeName* listName, NodeValue* listValue, NodeStyle* listStyle);
 
-int viewRectangle(NodeValue* liveValue, NodeName* liveName);
+void viewLine(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyle);
+
+
+int rectangle(int nbForm, NodeName* listName, NodeValue* listValue, NodeStyle* listStyle);
+
+void viewRectangle(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyle);
 
 
 #endif

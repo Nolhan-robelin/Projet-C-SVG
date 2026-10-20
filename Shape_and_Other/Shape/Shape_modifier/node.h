@@ -11,7 +11,14 @@ typedef struct NodeName {
     struct NodeName* next; 
 } NodeName;
 
+typedef struct NodeStyle {
+    char** data;           
+    struct NodeStyle* next; 
+} NodeStyle;
+
 NodeName* createNodeName(char* name);
+
+NodeStyle* createNodeStyle(char** style);
 
 NodeValue* createNodeValue(int* value);
 
@@ -19,10 +26,12 @@ NodeValue* insertHeadValue(NodeValue* head, int value[]);
 
 NodeName* insertHeadName(NodeName* head, char name[]);
 
-void formList(NodeValue* headValue, NodeName* headName);
+NodeStyle* insertHeadStyle(NodeStyle* head, char* name[]);
 
-void freeList(int index, NodeValue* headValue, NodeName* headName);
+void formList(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle);
 
-void modifyShape(NodeValue* headValue, NodeName* headName);
+void freeList(int index, NodeValue* headValue, NodeName* headName, NodeStyle* headStyle);
+
+void modifyShape(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle);
 
 #endif
