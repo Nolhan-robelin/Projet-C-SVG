@@ -59,8 +59,9 @@ void formList(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle) {
     NodeValue* liveValue = headValue;
     NodeName* liveName = headName;
     NodeStyle* liveStyle = headStyle;
+    int* index = liveValue->data;
     
-    while (liveValue != NULL) {
+    while (index[0] != 0) {
         
         char* actualName = liveName->data;
         if (strcmp(actualName, "Circle")) 

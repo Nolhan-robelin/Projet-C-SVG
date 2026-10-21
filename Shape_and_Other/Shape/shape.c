@@ -41,6 +41,19 @@ void viewCircle(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyle)
     printf("at coordinate x:%d and y:%d and with a radius of %d with the stroke color of %s and fill color of %s\n", actualTab[1], actualTab[2], actualTab[3], actualStyle[0], actualStyle[1]);
 }
 
+char* addCircle(NodeValue* liveValue, NodeStyle* liveStyle)
+{
+    int* actualTab = liveValue->data;
+    char** actualStyle = liveStyle->data;
+   
+    char* result = malloc(150 * sizeof(char));
+    
+    snprintf(result, 150, "<circle cx=\"%d\" cy=\"%d\" r=\"%d\" style=\"fill:%s; stroke:%s;\" />",actualTab[1], actualTab[2], actualTab[3], actualStyle[0], actualStyle[1]);
+    return result;
+}
+
+
+
 int elipse(int nbForm, NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
 {
     elipse_t newElipse;
@@ -76,6 +89,20 @@ void viewElipse(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyle)
     printf("at coordinate x:%d and y:%d and with a radius of %d at x axis and %d at y axis with the stroke color of %s and fill color of %s\n", actualTab[1], actualTab[2], actualTab[3], actualTab[4], actualStyle[0], actualStyle[1]);
 }
 
+char* addElipse(NodeValue* liveValue, NodeStyle* liveStyle)
+{
+    int* actualTab = liveValue->data;
+    char** actualStyle = liveStyle->data;
+   
+    char* result = malloc(150 * sizeof(char));
+    
+    snprintf(result, 150, "<rect cx=\"%d\" cy=\"%d\" rx=\"%d\" ry=\"%d\" style=\"fill:%s; stroke:%s;\" />",actualTab[1], actualTab[2], actualTab[3], actualTab[4], actualStyle[0], actualStyle[1]);
+    return result;
+}
+
+
+
+
 int line(int nbForm, NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
 {
     line_t newLine;
@@ -110,6 +137,20 @@ void viewLine(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyle)
     printf("with the first point being at coordinate x:%d and y:%d and the second point at coordinate x:%d and y:%d and with a stroke color of %s\n", actualTab[1], actualTab[2], actualTab[3], actualTab[4], actualStyle[0]);
 }
 
+char* addLine(NodeValue* liveValue, NodeStyle* liveStyle)
+{
+    int* actualTab = liveValue->data;
+    char** actualStyle = liveStyle->data;
+   
+    char* result = malloc(150 * sizeof(char));
+    
+    snprintf(result, 150, "<rect x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:%s;\" />",actualTab[1], actualTab[2], actualTab[3], actualTab[4], actualStyle[0]);
+    return result;
+}
+
+
+
+
 int rectangle(int nbForm, NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
 {
     rectangle_t newRectangle;
@@ -143,6 +184,17 @@ void viewRectangle(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyl
     printf("%d ", actualTab[0]);
     printf("%s ", actualName);
     printf("at coordinate x:%d and y:%d and with a width of %d and a height of %d with the stroke color of %s and fill color of %s\n", actualTab[1], actualTab[2], actualTab[3], actualTab[4], actualStyle[0], actualStyle[1]);
+}
+
+char* addRectangle(NodeValue* liveValue, NodeStyle* liveStyle)
+{
+    int* actualTab = liveValue->data;
+    char** actualStyle = liveStyle->data;
+   
+    char* result = malloc(150 * sizeof(char));
+    
+    snprintf(result, 150, "<rect x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\" style=\"fill:%s; stroke:%s;\" />",actualTab[1], actualTab[2], actualTab[3], actualTab[4], actualStyle[0], actualStyle[1]);
+    return result;
 }
 
 /* à faire si le temps

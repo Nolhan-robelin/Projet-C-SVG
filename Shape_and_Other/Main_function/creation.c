@@ -22,32 +22,53 @@ int viewFile(NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
     {  
         printf("The file got created successfully\n");
         char* dataP = malloc(sizeof(char) * 1000);
-        dataP = "<svg xmlns='http://www.w3.org/2000/svg' width='150' height='100' viewBox='-400 400 200 -200";
+        dataP = "<svg xmlns='http://www.w3.org/2000/svg' width='150' height='100' viewBox='-400 400 200 -200>";
         
     NodeValue* liveValue = listValue;
     NodeName* liveName = listName;
     NodeStyle* liveStyle = listStyle;
+    int* index = liveValue->data;
+    char* circ;
+    char* elip;
+    char* line;
+    char* rect;
     
-    while (liveValue != NULL) {
+    while (index[0] != 0) {
         
         char* actualName = liveName->data;
         if (strcmp(actualName, "Circle")) 
-            return 0;
-
+        {
+            circ = addCircle(liveValue, liveStyle);
+            strcat(dataP, circ);
+            free(circ);
+        }
         else if (strcmp(actualName, "Elipse")) 
-            return 0;
-
-        else if (strcmp(actualName, "Line")) 
-            return 0;
-        
-        else if (strcmp(actualName, "Rectangle")) 
-            return 0;
+        {
+            elip = addElipse(liveValue, liveStyle);
+            strcat(dataP, elip); 
+            free(elip);
+        }
+        else if (strcmp(actualName, "Line"))
+        { 
+            line = addLine(liveValue, liveStyle);
+            strcat(dataP, line); 
+            free(line);
+        }
+        else if (strcmp(actualName, "Rectangle"))
+        { 
+            rect = addRectangle(liveValue, liveStyle);
+            strcat(dataP, rect);
+            free(rect);
+        }
         
     liveName = liveName->next;
     liveValue = liveValue->next;
     }
+    char* endDataP = "</svg>";
+
+    strcat(dataP, endDataP);
     fputs(dataP, fptr);
-        
+    fclose(fptr);
     return 1;
     }
 
@@ -68,10 +89,4 @@ int openFile(void)
         printf("File successfully opened\n");
         return 1;
     }         
-}
-
-int save(void)
-{
-    // Function which save what the user made
-    return 0;
 }
