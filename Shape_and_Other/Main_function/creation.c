@@ -24,7 +24,7 @@ int viewFile(NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
         char* dataP = malloc(sizeof(char) * 1000);
         strcpy(dataP, "<svg xmlns='http://www.w3.org/2000/svg' width='150' height='100' viewBox='-400 400 200 -200'>");
         
-    printf("Test export svg");
+
     NodeValue* liveValue = listValue;
     NodeName* liveName = listName;
     NodeStyle* liveStyle = listStyle;
@@ -33,18 +33,16 @@ int viewFile(NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
     char* elip;
     char* line;
     char* rect;
-    printf("Test2 export svg");
+  
     while (index[0] != 0) {
         printf("Test3 export svg");
         char* actualName = liveName->data;
         if (!strcmp(actualName, "Circle")) 
         {
-            circ = addCircle(liveValue, liveStyle);
-            printf("Test4 export svg");
-            strcat(dataP, circ);
-            printf("Test5 export svg");
+            circ = addCircle(liveValue, liveStyle);   
+            strcat(dataP, circ);   
             free(circ);
-            printf("Test6 export svg");
+      
         }
         else if (!strcmp(actualName, "Elipse")) 
         {

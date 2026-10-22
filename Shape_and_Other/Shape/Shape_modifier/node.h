@@ -28,7 +28,7 @@ NodeName* insertHeadName(NodeName** head, char name[]);
 
 NodeStyle* insertHeadStyle(NodeStyle** head, char** style);
 
-void formList(int nbForm, NodeValue* headValue, NodeName* headName, NodeStyle* headStyle);
+void formList(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle);
 
 void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle);
 

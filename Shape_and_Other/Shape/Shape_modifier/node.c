@@ -55,22 +55,19 @@ NodeStyle* insertHeadStyle(NodeStyle** head, char** style) {
     return new;
 }
 
-void formList(int nbForm, NodeValue* headValue, NodeName* headName, NodeStyle* headStyle) {
+void formList(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle) {
     NodeValue* liveValue = headValue;
     NodeName* liveName = headName;
     NodeStyle* liveStyle = headStyle;
     
     int* index = liveValue->data;
-    printf("Test entreé fonction index : %d valeur de nbForm: %d \n", index[0], nbForm);
     
     while (index[0] != 0) {
-        printf("Test2 entreé fonction");
+
         char* actualName = liveName->data;
         if (!strcmp(actualName, "Circle")) 
-        {
             viewCircle(liveValue, liveName, liveStyle);
-            printf("Test3 entreé fonction");
-        }
+
         else if (!strcmp(actualName, "Elipse")) 
             viewElipse(liveValue, liveName, liveStyle);
 

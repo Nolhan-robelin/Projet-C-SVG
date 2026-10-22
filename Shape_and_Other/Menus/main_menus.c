@@ -30,7 +30,7 @@ do {
                                       
                                     do {
                                         printf("\n");
-                                        formList(nbForm, listValue, listName, listStyle);
+                                        formList(listValue, listName, listStyle);
                                         printf("What do you want to do?\n");
                                         printf("1 to create a new form\n");
                                         printf("2 to edit a form\n");
