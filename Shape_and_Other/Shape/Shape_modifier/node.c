@@ -63,7 +63,7 @@ void formList(int nbForm, NodeValue* headValue, NodeName* headName, NodeStyle* h
     int* index = liveValue->data;
     printf("Test entreé fonction index : %d valeur de nbForm: %d \n", index[0], nbForm);
     
-    while (index[0] != 0) {
+    while (index[0] != 0 || index[0] == NULL) {
         printf("Test2 entreé fonction");
         char* actualName = liveName->data;
         if (!strcmp(actualName, "Circle")) 
@@ -132,6 +132,13 @@ void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle)
     liveValue->next = tempValue;
     liveStyle->next = tempStyle;
 
+    free(delName->data);
+    free(delValue->data);
+
+    free(delStyle->data[0]);
+    free(delStyle->data[1]);
+    free(delStyle->data);
+
     free(delName);
     free(delValue);
     free(delStyle);
@@ -147,7 +154,7 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
     NodeStyle* tempStyle = NULL;
 
     int* newData = malloc(sizeof(int) * 5);
-    char* newStyle = malloc(sizeof(char)* 50);
+    char** newStyle = malloc(sizeof(char)* 50);
     int index;
 
     printf("Which shape do you want to modify(Index)\n");
@@ -175,8 +182,8 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
         printf("Enter the coordinate x and y of the circle and the radius and both the stroke's color and fill color\n");
         for(int i = 0;i < 3; i++)
             scanf("%d", &newData[i]);
-        scanf("%s", &newStyle[0]);
-        scanf("%s", &newStyle[1]);
+        scanf("%19s", &newStyle[0]);
+        scanf("%19s", &newStyle[1]);
     }
 
     else if (!strcmp(actualName, "Elipse")) 
@@ -184,8 +191,8 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
         printf("Enter the coordinate x and y of the elipse and the radius at x and y coordinate and both the stroke's color and fill color\n");
         for(int i = 0;i < 4; i++)
             scanf("%d", &newData[i]);
-        scanf("%s", &newStyle[0]);
-        scanf("%s", &newStyle[1]);
+        scanf("%19s", &newStyle[0]);
+        scanf("%19s", &newStyle[1]);
     }
     
     else if (!strcmp(actualName, "Line")) 
@@ -193,7 +200,7 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
         printf("Enter the coordinate x and y of the first point and the coordinate x and y of the second point and the stroke's color\n");
         for(int i = 0;i < 4; i++)
             scanf("%d", &newData[i]);
-        scanf("%s", &newStyle[0]);
+        scanf("%19s", &newStyle[0]);
     }
     
     else if (!strcmp(actualName, "Rectangle")) 
@@ -201,8 +208,8 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
         printf("Enter the coordinate x and y of the rectangle and the width and height of it and both the stroke's color and fill color\n");
         for(int i = 0;i < 4; i++)
             scanf("%d", &newData[i]);
-        scanf("%s", &newStyle[0]);
-        scanf("%s", &newStyle[1]);
+        scanf("%19s", &newStyle[0]);
+        scanf("%19s", &newStyle[1]);
     }
     
     liveStyle->data = &newStyle;

@@ -67,6 +67,7 @@ int viewFile(NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
         
     liveName = liveName->next;
     liveValue = liveValue->next;
+    index = liveValue->data;
     }
     char* endDataP = "</svg>";
 
