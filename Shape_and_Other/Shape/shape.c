@@ -146,7 +146,7 @@ int line(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** lis
     scanf("%19s", newLine.stroke);
     nbForm++;
     
-    char** style = malloc(sizeof(char*) * 1);
+    char** style = malloc(sizeof(char*) * 2);
     style[0] = newLine.stroke;
 
     int* values = malloc(sizeof(int) * 5);

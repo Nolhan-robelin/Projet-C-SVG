@@ -87,8 +87,8 @@ int formChoice(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle
                         scanf("%1d", &choice);
                         switch (choice)
                         {
-                            case 1: correctChoice = 'y'; nbForm = circle(nbForm, &listName, &listValue, &listStyle); break;
-                            case 2: correctChoice = 'y'; nbForm = elipse(nbForm, &listName, &listValue, &listStyle); break;
+                            case 1: correctChoice = 'y'; nbForm = circle(nbForm, listName, listValue, listStyle); break;
+                            case 2: correctChoice = 'y'; nbForm = elipse(nbForm, listName, listValue, listStyle); break;
                             default: printf("Invalid value you may restart\n");
                         }
                     } while  (correctChoice == 'n');break ;
@@ -99,7 +99,7 @@ int formChoice(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle
                         scanf("%1d", &choice);
                         switch (choice)
                         {
-                            case 1: correctChoice = 'y'; nbForm = rectangle(nbForm, &listName, &listValue, &listStyle); break;
+                            case 1: correctChoice = 'y'; nbForm = rectangle(nbForm, listName, listValue, listStyle); break;
                             // case 2: polygon(); break;
                             default: printf("Invalid value you may restart\n");
                         }
@@ -113,7 +113,7 @@ int formChoice(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle
                         scanf("%1d", &choice);
                         switch (choice)
                         {
-                            case 1: correctChoice = 'y'; nbForm = line(nbForm, &listName, &listValue, &listStyle); break;
+                            case 1: correctChoice = 'y'; nbForm = line(nbForm, listName, listValue, listStyle); break;
                             // case 2: several_line(); break;
                             // case 3: path(); break;
                             default: printf("Invalid value you may restart\n");
