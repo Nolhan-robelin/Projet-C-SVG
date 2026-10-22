@@ -5,9 +5,12 @@
 #include "../Main_function/creation.h"
 #include "../Shape/shape.h"
 
+/** @brief Displays the main menu and handles user input
+ * @param None
+ * @return 0
+ */
 int mainMenu(void)
 {
-    //Main menu where user is asked if  he want to create/Load/save or edit a shape/file
     char exit = 'n';
     char correctFile = 'n';
 do {
@@ -53,7 +56,7 @@ do {
                                             case 5: exit = 'y';printf("Have a good day !\n"); break;
 
                                         }
-                                        
+                                        updateIndex(listValue);
                                     } while(exit == 'n'); break;
 
             default: printf("Invalid number you may try again\n"); break;
@@ -62,6 +65,13 @@ do {
 return 0;
 }
 
+/** @brief Asks the user to choose a form type
+ * @param nbForm Number of forms
+ * @param listName List of form names
+ * @param listValue List of form values
+ * @param listStyle List of form styles
+ * @return The updated number of forms
+ */
 int formChoice(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** listStyle)
 {
     char correctForm = 'n';
@@ -74,9 +84,8 @@ int formChoice(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle
 
         printf("What do you need  ?\n");
         printf("1 for a circle or an elipse\n");
-        printf("2 for any polygon \n");
+        printf("2 for a rectangle \n");
         printf("3 for multiple line, a simple line or a path\n");
-        // printf("4 to create a group of several form\n");
         
         scanf("%1d", &form);
         switch(form)
@@ -100,7 +109,6 @@ int formChoice(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle
                         switch (choice)
                         {
                             case 1: correctChoice = 'y'; nbForm = rectangle(nbForm, listName, listValue, listStyle); break;
-                            // case 2: polygon(); break;
                             default: printf("Invalid value you may restart\n");
                         }
                     } while  (correctChoice == 'n'); break;
@@ -114,22 +122,10 @@ int formChoice(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle
                         switch (choice)
                         {
                             case 1: correctChoice = 'y'; nbForm = line(nbForm, listName, listValue, listStyle); break;
-                            // case 2: several_line(); break;
-                            // case 3: path(); break;
                             default: printf("Invalid value you may restart\n");
                         }
                     } while  (correctChoice == 'n'); break;
             
-            /*
-            case 4:
-                        int formNb;
-                        printf("How many form do you want ? \n");    // Ask the number of form wanted ; relancer la fonction pour avoir les formes voulus et jsp 
-                        scanf("%d", &formNb);
-                        for(int i = 0; i = formNb; i++)
-                        {
-                            formChoice();  // A terminer ; besoin de liste chainée pour augmenter la taille du tableau pour ajouter un nouveau groupe de forme
-                        }
-            */
             default: printf("Invalid value you may restart\n"); break;
         }
     } while (correctForm == 'n');

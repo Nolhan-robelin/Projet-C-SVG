@@ -8,6 +8,13 @@
 #include "../Shape/Shape_modifier/node.h"
 
 
+/** @brief Creates a new circle shape
+ * @param nbForm Number of forms
+ * @param listName List of form names
+ * @param listValue List of form values
+ * @param listStyle List of form styles
+ * @return The updated number of forms
+ */
 int circle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** listStyle)
 {
     circle_t newCircle;
@@ -45,6 +52,12 @@ int circle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** l
     return nbForm;
 }
 
+/** @brief print the values of a circle shape
+ * @param liveValue Pointer to the current value node
+ * @param liveName Pointer to the current name node
+ * @param liveStyle Pointer to the current style node
+ * @return None
+ */
 void viewCircle(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyle)
 {
     char* actualName = liveName->data;
@@ -55,6 +68,11 @@ void viewCircle(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyle)
     printf("at coordinate x:%d and y:%d and with a radius of %d with the stroke color of %s and fill color of %s\n", actualTab[1], actualTab[2], actualTab[3], actualStyle[0], actualStyle[1]);
 }
 
+/** @brief Adds a circle shape to the SVG
+ * @param liveValue Pointer to the current value node
+ * @param liveStyle Pointer to the current style node
+ * @return The SVG code for the circle
+ */
 char* addCircle(NodeValue* liveValue, NodeStyle* liveStyle)
 {
     int* actualTab = liveValue->data;
@@ -67,7 +85,13 @@ char* addCircle(NodeValue* liveValue, NodeStyle* liveStyle)
 }
 
 
-
+/** @brief Creates a new elipse shape
+ * @param nbForm Number of forms
+ * @param listName List of form names
+ * @param listValue List of form values
+ * @param listStyle List of form styles
+ * @return The updated number of forms
+ */
 int elipse(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** listStyle)
 {
     elipse_t newElipse;
@@ -106,6 +130,12 @@ int elipse(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** l
     return nbForm;
 }
 
+/** @brief print the values of an elipse shape
+ * @param liveValue Pointer to the current value node
+ * @param liveName Pointer to the current name node
+ * @param liveStyle Pointer to the current style node
+ * @return None
+ */
 void viewElipse(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyle)
 {
     char* actualName = liveName->data;
@@ -116,6 +146,11 @@ void viewElipse(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyle)
     printf("at coordinate x:%d and y:%d and with a radius of %d at x axis and %d at y axis with the stroke color of %s and fill color of %s\n", actualTab[1], actualTab[2], actualTab[3], actualTab[4], actualStyle[0], actualStyle[1]);
 }
 
+/** @brief Adds an elipse shape to the SVG
+ * @param liveValue Pointer to the current value node
+ * @param liveStyle Pointer to the current style node
+ * @return The SVG code for the elipse
+ */
 char* addElipse(NodeValue* liveValue, NodeStyle* liveStyle)
 {
     int* actualTab = liveValue->data;
@@ -129,7 +164,13 @@ char* addElipse(NodeValue* liveValue, NodeStyle* liveStyle)
 
 
 
-
+/** @brief Creates a new line shape
+ * @param nbForm Number of forms
+ * @param listName List of form names
+ * @param listValue List of form values
+ * @param listStyle List of form styles
+ * @return The updated number of forms
+ */
 int line(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** listStyle)
 {
     line_t newLine;
@@ -165,6 +206,12 @@ int line(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** lis
     return nbForm;
 }
 
+/** @brief print the values of a line shape
+ * @param liveValue Pointer to the current value node
+ * @param liveName Pointer to the current name node
+ * @param liveStyle Pointer to the current style node
+ * @return None
+ */
 void viewLine(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyle)
 {
     char* actualName = liveName->data;
@@ -175,6 +222,11 @@ void viewLine(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyle)
     printf("with the first point being at coordinate x:%d and y:%d and the second point at coordinate x:%d and y:%d and with a stroke color of %s\n", actualTab[1], actualTab[2], actualTab[3], actualTab[4], actualStyle[0]);
 }
 
+/** @brief Adds a line shape to the SVG
+ * @param liveValue Pointer to the current value node
+ * @param liveStyle Pointer to the current style node
+ * @return The SVG code for the line
+ */
 char* addLine(NodeValue* liveValue, NodeStyle* liveStyle)
 {
     int* actualTab = liveValue->data;
@@ -188,7 +240,13 @@ char* addLine(NodeValue* liveValue, NodeStyle* liveStyle)
 
 
 
-
+/** @brief Creates a new rectangle shape
+ * @param nbForm Number of forms
+ * @param listName List of form names
+ * @param listValue List of form values
+ * @param listStyle List of form styles
+ * @return The updated number of forms
+ */
 int rectangle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** listStyle)
 {
     rectangle_t newRectangle;
@@ -227,6 +285,12 @@ int rectangle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle*
     return nbForm;
 }
 
+/** @brief print the values of a rectangle shape
+ * @param liveValue Pointer to the current value node
+ * @param liveName Pointer to the current name node
+ * @param liveStyle Pointer to the current style node
+ * @return None
+ */
 void viewRectangle(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyle)
 {
     char* actualName = liveName->data;
@@ -237,6 +301,11 @@ void viewRectangle(NodeValue* liveValue, NodeName* liveName, NodeStyle* liveStyl
     printf("at coordinate x:%d and y:%d and with a width of %d and a height of %d with the stroke color of %s and fill color of %s\n", actualTab[1], actualTab[2], actualTab[3], actualTab[4], actualStyle[0], actualStyle[1]);
 }
 
+/** @brief Adds a rectangle shape to the SVG
+ * @param liveValue Pointer to the current value node
+ * @param liveStyle Pointer to the current style node
+ * @return The SVG code for the rectangle
+ */
 char* addRectangle(NodeValue* liveValue, NodeStyle* liveStyle)
 {
     int* actualTab = liveValue->data;

@@ -4,6 +4,10 @@
 #include "../shape.h"
 #include "string.h"
 
+/** @brief Creates a new node for storing shape values
+ * @param value Pointer to the value to store
+ * @return Pointer to the new node
+ */
 NodeValue* createNodeValue(int* value) {
     NodeValue* new = malloc(sizeof(NodeValue));
     if (new == NULL) {
@@ -15,6 +19,10 @@ NodeValue* createNodeValue(int* value) {
     return new;
 }
 
+/** @brief Creates a new node for storing shape names
+ * @param name Pointer to the name to store
+ * @return Pointer to the new node
+ */
 NodeName* createNodeName(char* name) {
     NodeName* new = malloc(sizeof(NodeName));
     if (new == NULL) {
@@ -26,6 +34,10 @@ NodeName* createNodeName(char* name) {
     return new;
 }
 
+/** @brief Creates a new node for storing shape styles
+ * @param style Pointer to the style to store
+ * @return Pointer to the new node
+ */
 NodeStyle* createNodeStyle(char** style) {
     NodeStyle* new = malloc(sizeof(NodeStyle));
     if (new == NULL) {
@@ -37,24 +49,45 @@ NodeStyle* createNodeStyle(char** style) {
     return new;
 }
 
+/** @brief Inserts a new value node at the head of the list
+ * @param head Pointer to the head of the list
+ * @param value Array of values to store in the new node
+ * @return Pointer to the new head of the list
+ */
 NodeValue* insertHeadValue(NodeValue** head, int value[]) {
     NodeValue* new = createNodeValue(value);
     new->next = *head; 
     return new;       
 }
 
+/** @brief Inserts a new name node at the head of the list
+ * @param head Pointer to the head of the list
+ * @param name Array of characters representing the name to store in the new node
+ * @return Pointer to the new head of the list
+ */
 NodeName* insertHeadName(NodeName** head, char name[]) {
     NodeName* new = createNodeName(name);
     new->next = *head; 
     return new;
 }
 
+/** @brief Inserts a new style node at the head of the list
+ * @param head Pointer to the head of the list
+ * @param style Array of characters representing the style to store in the new node
+ * @return Pointer to the new head of the list
+ */
 NodeStyle* insertHeadStyle(NodeStyle** head, char** style) {
     NodeStyle* new = createNodeStyle(style);
     new->next = *head; 
     return new;
 }
 
+/** @brief Displays the list of shapes
+ * @param headValue Pointer to the head of the value list
+ * @param headName Pointer to the head of the name list
+ * @param headStyle Pointer to the head of the style list
+ * @return None
+ */
 void formList(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle) {
     NodeValue* liveValue = headValue;
     NodeName* liveName = headName;
@@ -85,6 +118,10 @@ void formList(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle) {
     }
 }
 
+/** @brief Updates the index of each shape in the list
+ * @param head Pointer to the head of the value list
+ * @return None
+ */
 void updateIndex(NodeValue* head)
 {
     int actual = 1;
@@ -102,6 +139,12 @@ void updateIndex(NodeValue* head)
     }
 }
 
+/** @brief Frees the memory allocated for the list of shapes
+ * @param headValue Pointer to the head of the value list
+ * @param headName Pointer to the head of the name list
+ * @param headStyle Pointer to the head of the style list
+ * @return None
+ */
 void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle) {
     
     NodeValue* delValue;
@@ -123,7 +166,7 @@ void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle)
 
     int* actualindex = liveValue->data;
     
-    while (liveValue != NULL && actualindex[0] != index - 1) {
+    while (liveValue != NULL && actualindex[0] != index) {
         tempValue = liveValue->next;
         tempName = liveName->next;
         tempStyle = liveStyle->next;

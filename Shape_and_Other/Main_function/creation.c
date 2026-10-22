@@ -5,10 +5,14 @@
 #include "string.h"
 #include "../Shape/shape.h"
 
-
+/** @brief open the svg file and write the shapes in it
+ * @param listName List of form names
+ * @param listValue List of form values
+ * @param listStyle List of form styles
+ * @return 1 if successful, 0 otherwise
+ */
 int viewFile(NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
 {
-    // Function which will create a file 
     FILE* fptr;
     fptr = fopen("svgVisual.svg", "w");
                                 
@@ -79,6 +83,10 @@ int viewFile(NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
 
 }
 
+/** @brief Opens a file for writing
+ * @param None
+ * @return 1 if successful, 0 otherwise
+ */
 int openFile(void)
 {
     FILE* fptr;
