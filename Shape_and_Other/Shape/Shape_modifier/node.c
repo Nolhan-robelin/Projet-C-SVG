@@ -5,7 +5,7 @@
 #include "string.h"
 
 NodeValue* createNodeValue(int* value) {
-    NodeValue* new = (NodeValue*) malloc(sizeof(NodeValue));
+    NodeValue* new = malloc(sizeof(NodeValue));
     if (new == NULL) {
         printf("Error : Couldn't allocate memory\n");
         exit(1);
@@ -16,7 +16,7 @@ NodeValue* createNodeValue(int* value) {
 }
 
 NodeName* createNodeName(char* name) {
-    NodeName* new = (NodeName*) malloc(sizeof(NodeName));
+    NodeName* new = malloc(sizeof(NodeName));
     if (new == NULL) {
         printf("Error : Couldn't allocate memory\n");
         exit(1);
@@ -27,7 +27,7 @@ NodeName* createNodeName(char* name) {
 }
 
 NodeStyle* createNodeStyle(char** style) {
-    NodeStyle* new = (NodeStyle*) malloc(sizeof(NodeStyle));
+    NodeStyle* new = malloc(sizeof(NodeStyle));
     if (new == NULL) {
         printf("Error : Couldn't allocate memory\n");
         exit(1);
@@ -39,19 +39,19 @@ NodeStyle* createNodeStyle(char** style) {
 
 NodeValue* insertHeadValue(NodeValue** head, int value[]) {
     NodeValue* new = createNodeValue(value);
-    new->next = head; 
+    new->next = *head; 
     return new;       
 }
 
 NodeName* insertHeadName(NodeName** head, char name[]) {
     NodeName* new = createNodeName(name);
-    new->next = head; 
+    new->next = *head; 
     return new;
 }
 
 NodeStyle* insertHeadStyle(NodeStyle** head, char* style[]) {
     NodeStyle* new = createNodeStyle(style);
-    new->next = head; 
+    new->next = *head; 
     return new;
 }
 

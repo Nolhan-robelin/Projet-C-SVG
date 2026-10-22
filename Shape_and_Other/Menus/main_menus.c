@@ -26,11 +26,11 @@ do {
                                 NodeName* listName = createNodeName("Début du fichier");
                                 NodeStyle* listStyle = createNodeStyle(style);
 
-                                correctFile = 'y';  
+                                correctFile = 'y';
                                       
                                     do {
                                         printf("\n");
-                                        formList(nbForm, &listValue, &listName, &listStyle);
+                                        formList(nbForm, listValue, listName, listStyle);
                                         printf("What do you want to do?\n");
                                         printf("1 to create a new form\n");
                                         printf("2 to edit a form\n");
@@ -95,7 +95,7 @@ int formChoice(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle
 
             case 2: correctForm = 'y';  
                     do {
-                    printf("Do you need a rectangle(1) or a polygon(2) ? \n");    // Ask the user what he need among the possibilities  
+                    printf("Do you need a rectangle(1)? \n");    // Ask the user what he need among the possibilities  
                         scanf("%1d", &choice);
                         switch (choice)
                         {

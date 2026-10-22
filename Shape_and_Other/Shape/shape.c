@@ -7,7 +7,7 @@
 #include "../Shape/Shape_modifier/node.h"
 
 
-int circle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** listStyle)
+int circle(int nbForm, NodeName*** listName, NodeValue*** listValue, NodeStyle*** listStyle)
 {
     circle_t newCircle;
 
@@ -28,9 +28,9 @@ int circle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** l
     char name[] = {"Circle"};
     int values[] = {nbForm, newCircle.x, newCircle.y, newCircle.radius};
 
-    listName = insertHeadName(&listName, name);
-    listValue = insertHeadValue(&listValue, values);
-    listStyle = insertHeadStyle(&listStyle, style);
+    *listName = insertHeadName(&listName, name);
+    *listValue = insertHeadValue(&listValue, values);
+    *listStyle = insertHeadStyle(&listStyle, style);
     
     free(newCircle.fill);
     free(newCircle.stroke);
@@ -60,7 +60,7 @@ char* addCircle(NodeValue* liveValue, NodeStyle* liveStyle)
 
 
 
-int elipse(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** listStyle)
+int elipse(int nbForm, NodeName*** listName, NodeValue*** listValue, NodeStyle*** listStyle)
 {
     elipse_t newElipse;
 
@@ -81,9 +81,9 @@ int elipse(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** l
     char* style[] = {newElipse.fill, newElipse.stroke};
     char name[] = {"Elipse"};
     int values[] = {nbForm, newElipse.cx, newElipse.cy, newElipse.rx, newElipse.ry};
-    listName = insertHeadName(&listName, name);
-    listValue = insertHeadValue(&listValue, values);
-    listStyle = insertHeadStyle(&listStyle, style);
+    *listName = insertHeadName(&listName, name);
+    *listValue = insertHeadValue(&listValue, values);
+    *listStyle = insertHeadStyle(&listStyle, style);
 
     free(newElipse.fill);
     free(newElipse.stroke);
@@ -108,14 +108,14 @@ char* addElipse(NodeValue* liveValue, NodeStyle* liveStyle)
    
     char* result = malloc(150 * sizeof(char));
     
-    snprintf(result, 150, "<rect cx=\"%d\" cy=\"%d\" rx=\"%d\" ry=\"%d\" style=\"fill:%s; stroke:%s;\" />",actualTab[1], actualTab[2], actualTab[3], actualTab[4], actualStyle[0], actualStyle[1]);
+    snprintf(result, 150, "<ellipse cx=\"%d\" cy=\"%d\" rx=\"%d\" ry=\"%d\" style=\"fill:%s; stroke:%s;\" />",actualTab[1], actualTab[2], actualTab[3], actualTab[4], actualStyle[0], actualStyle[1]);
     return result;
 }
 
 
 
 
-int line(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** listStyle)
+int line(int nbForm, NodeName*** listName, NodeValue*** listValue, NodeStyle*** listStyle)
 {
     line_t newLine;
 
@@ -134,9 +134,9 @@ int line(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** lis
     char* style[] = {newLine.stroke};
     char name[] = {"Line"};
     int values[] = {nbForm, newLine.x1, newLine.x2, newLine.y1, newLine.y2};
-    listName = insertHeadName(&listName, name);
-    listValue = insertHeadValue(&listValue, values);
-    listStyle = insertHeadStyle(&listStyle, style);
+    *listName = insertHeadName(&listName, name);
+    *listValue = insertHeadValue(&listValue, values);
+    *listStyle = insertHeadStyle(&listStyle, style);
 
     free(newLine.stroke);
 
@@ -160,14 +160,14 @@ char* addLine(NodeValue* liveValue, NodeStyle* liveStyle)
    
     char* result = malloc(150 * sizeof(char));
     
-    snprintf(result, 150, "<rect x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:%s;\" />",actualTab[1], actualTab[2], actualTab[3], actualTab[4], actualStyle[0]);
+    snprintf(result, 150, "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:%s;\" />",actualTab[1], actualTab[2], actualTab[3], actualTab[4], actualStyle[0]);
     return result;
 }
 
 
 
 
-int rectangle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** listStyle)
+int rectangle(int nbForm, NodeName*** listName, NodeValue*** listValue, NodeStyle*** listStyle)
 {
     rectangle_t newRectangle;
 
@@ -188,9 +188,9 @@ int rectangle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle*
     char* style[] = {newRectangle.fill, newRectangle.stroke};
     int values[] = {nbForm, newRectangle.x, newRectangle.y, newRectangle.width, newRectangle.height};
     char name[] = {"Rectangle"};
-    listName = insertHeadName(&listName, name);
-    listValue = insertHeadValue(&listValue, values);
-    listStyle = insertHeadStyle(&listStyle, style);
+    *listName = insertHeadName(&listName, name);
+    *listValue = insertHeadValue(&listValue, values);
+    *listStyle = insertHeadStyle(&listStyle, style);
 
     free(newRectangle.fill);
     free(newRectangle.stroke);
@@ -218,19 +218,3 @@ char* addRectangle(NodeValue* liveValue, NodeStyle* liveStyle)
     snprintf(result, 150, "<rect x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\" style=\"fill:%s; stroke:%s;\" />",actualTab[1], actualTab[2], actualTab[3], actualTab[4], actualStyle[0], actualStyle[1]);
     return result;
 }
-
-/* à faire si le temps
-int polygon(void)
-{
-    polygon_t newPolygon;
-    newPolygon.x;
-    newPolygon.y;
-    newPolygon.radius;
-
-    printf("What are the coordinate x and y of the circle and the radius\n");
-    printf("Press Enter between each values\n");
-    scanf("%d", &newCircle.x);
-    scanf("%d", &newCircle.y);
-    scanf("%d", &newCircle.radius);
-}
-*/
