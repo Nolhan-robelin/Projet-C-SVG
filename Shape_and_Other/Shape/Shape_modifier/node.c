@@ -49,7 +49,7 @@ NodeName* insertHeadName(NodeName** head, char name[]) {
     return new;
 }
 
-NodeStyle* insertHeadStyle(NodeStyle** head, char* style[]) {
+NodeStyle* insertHeadStyle(NodeStyle** head, char** style) {
     NodeStyle* new = createNodeStyle(style);
     new->next = *head; 
     return new;
@@ -63,7 +63,7 @@ void formList(int nbForm, NodeValue* headValue, NodeName* headName, NodeStyle* h
     int* index = liveValue->data;
     printf("Test entreé fonction index : %d valeur de nbForm: %d \n", index[0], nbForm);
     
-    while (index[0] != 0 || index[0] == NULL) {
+    while (index[0] != 0) {
         printf("Test2 entreé fonction");
         char* actualName = liveName->data;
         if (!strcmp(actualName, "Circle")) 
@@ -83,7 +83,8 @@ void formList(int nbForm, NodeValue* headValue, NodeName* headName, NodeStyle* h
         liveName = liveName->next;
         liveValue = liveValue->next;
         liveStyle = liveStyle->next;
-        index = liveValue->data;
+        if (liveValue != NULL)    
+            index = liveValue->data;
     }
 }
 
@@ -135,15 +136,22 @@ void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle)
     free(delName->data);
     free(delValue->data);
 
+    char* actualName = liveName->data;
     free(delStyle->data[0]);
-    free(delStyle->data[1]);
+    if (strcmp(actualName ,"Line"))
+        free(delStyle->data[1]);
     free(delStyle->data);
 
     free(delName);
     free(delValue);
     free(delStyle);
 }
-
+/**
+ * Modifies a shape in the list
+ * @param headValue Pointer to the head of the value list
+ * @param headName Pointer to the head of the name list
+ * @param headStyle Pointer to the head of the style list
+ */
 void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle)
 {
     NodeValue* liveValue = *headValue;
@@ -154,7 +162,9 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
     NodeStyle* tempStyle = NULL;
 
     int* newData = malloc(sizeof(int) * 5);
-    char** newStyle = malloc(sizeof(char)* 50);
+    char** newStyle = malloc(sizeof(char*) * 2);  
+    newStyle[0] = malloc(20);
+    newStyle[1] = malloc(20);  
     int index;
 
     printf("Which shape do you want to modify(Index)\n");
@@ -182,8 +192,8 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
         printf("Enter the coordinate x and y of the circle and the radius and both the stroke's color and fill color\n");
         for(int i = 0;i < 3; i++)
             scanf("%d", &newData[i]);
-        scanf("%19s", &newStyle[0]);
-        scanf("%19s", &newStyle[1]);
+        scanf("%19s", newStyle[0]);
+        scanf("%19s", newStyle[1]);
     }
 
     else if (!strcmp(actualName, "Elipse")) 
@@ -191,8 +201,8 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
         printf("Enter the coordinate x and y of the elipse and the radius at x and y coordinate and both the stroke's color and fill color\n");
         for(int i = 0;i < 4; i++)
             scanf("%d", &newData[i]);
-        scanf("%19s", &newStyle[0]);
-        scanf("%19s", &newStyle[1]);
+        scanf("%19s", newStyle[0]);
+        scanf("%19s", newStyle[1]);
     }
     
     else if (!strcmp(actualName, "Line")) 
@@ -200,7 +210,7 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
         printf("Enter the coordinate x and y of the first point and the coordinate x and y of the second point and the stroke's color\n");
         for(int i = 0;i < 4; i++)
             scanf("%d", &newData[i]);
-        scanf("%19s", &newStyle[0]);
+        scanf("%19s", newStyle[0]);
     }
     
     else if (!strcmp(actualName, "Rectangle")) 
@@ -208,10 +218,10 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
         printf("Enter the coordinate x and y of the rectangle and the width and height of it and both the stroke's color and fill color\n");
         for(int i = 0;i < 4; i++)
             scanf("%d", &newData[i]);
-        scanf("%19s", &newStyle[0]);
-        scanf("%19s", &newStyle[1]);
+        scanf("%19s", newStyle[0]);
+        scanf("%19s", newStyle[1]);
     }
     
-    liveStyle->data = &newStyle;
+    liveStyle->data = newStyle;
     liveValue->data = newData;
 }

@@ -38,9 +38,9 @@ int circle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** l
     values[2] = newCircle.y;
     values[3] = newCircle.radius;
 
-    *listName = insertHeadName(&listName, name);
-    *listValue = insertHeadValue(&listValue, values);
-    *listStyle = insertHeadStyle(&listStyle, style);
+    *listName = insertHeadName(listName, name);
+    *listValue = insertHeadValue(listValue, values);
+    *listStyle = insertHeadStyle(listStyle, style);
 
     return nbForm;
 }
@@ -99,9 +99,9 @@ int elipse(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** l
 
     char* name = malloc(strlen("Elipse") + 1);
     strcpy(name, "Elipse");
-    *listName = insertHeadName(&listName, name);
-    *listValue = insertHeadValue(&listValue, values);
-    *listStyle = insertHeadStyle(&listStyle, style);
+    *listName = insertHeadName(listName, name);
+    *listValue = insertHeadValue(listValue, values);
+    *listStyle = insertHeadStyle(listStyle, style);
 
     return nbForm;
 }
@@ -158,9 +158,9 @@ int line(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** lis
 
     char* name = malloc(strlen("Line") + 1);
     strcpy(name, "Line");
-    *listName = insertHeadName(&listName, name);
-    *listValue = insertHeadValue(&listValue, values);
-    *listStyle = insertHeadStyle(&listStyle, style);
+    *listName = insertHeadName(listName, name);
+    *listValue = insertHeadValue(listValue, values);
+    *listStyle = insertHeadStyle(listStyle, style);
 
     return nbForm;
 }
@@ -220,9 +220,9 @@ int rectangle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle*
 
     char* name = malloc(strlen("Rectangle") + 1);
     strcpy(name, "Rectangle");
-    *listName = insertHeadName(&listName, name);
-    *listValue = insertHeadValue(&listValue, values);
-    *listStyle = insertHeadStyle(&listStyle, style);
+    *listName = insertHeadName(listName, name);
+    *listValue = insertHeadValue(listValue, values);
+    *listStyle = insertHeadStyle(listStyle, style);
 
     return nbForm;
 }
