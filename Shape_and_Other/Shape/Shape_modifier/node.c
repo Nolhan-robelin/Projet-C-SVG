@@ -66,18 +66,18 @@ void formList(int nbForm, NodeValue* headValue, NodeName* headName, NodeStyle* h
     while (index[0] != 0) {
         printf("Test2 entreé fonction");
         char* actualName = liveName->data;
-        if (strcmp(actualName, "Circle")) 
+        if (!strcmp(actualName, "Circle")) 
         {
             viewCircle(liveValue, liveName, liveStyle);
             printf("Test3 entreé fonction");
         }
-        else if (strcmp(actualName, "Elipse")) 
+        else if (!strcmp(actualName, "Elipse")) 
             viewElipse(liveValue, liveName, liveStyle);
 
-        else if (strcmp(actualName, "Line")) 
+        else if (!strcmp(actualName, "Line")) 
             viewLine(liveValue, liveName, liveStyle);
         
-        else if (strcmp(actualName, "Rectangle")) 
+        else if (!strcmp(actualName, "Rectangle")) 
             viewRectangle(liveValue, liveName, liveStyle);
         
         liveName = liveName->next;
@@ -93,9 +93,9 @@ void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle)
     NodeName* delName;
     NodeStyle* delStyle;
 
-    NodeValue* liveValue = headValue;
-    NodeName* liveName = headName;
-    NodeStyle* liveStyle = headStyle;
+    NodeValue* liveValue = *headValue;
+    NodeName* liveName = *headName;
+    NodeStyle* liveStyle = *headStyle;
 
     NodeValue* tempValue = NULL;
     NodeName* tempName = NULL;
@@ -139,11 +139,11 @@ void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle)
 
 void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle)
 {
-    NodeValue* liveValue = headValue;
+    NodeValue* liveValue = *headValue;
     NodeValue* tempValue = NULL;
-    NodeName* liveName = headName;
+    NodeName* liveName = *headName;
     NodeName* tempName = NULL;
-    NodeStyle* liveStyle = headStyle;
+    NodeStyle* liveStyle = *headStyle;
     NodeStyle* tempStyle = NULL;
 
     int* newData = malloc(sizeof(int) * 5);
@@ -170,43 +170,41 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
     
     char* actualName = liveName->data;
 
-    if (strcmp(actualName,"Circle")) 
+    if (!strcmp(actualName,"Circle")) 
     {
         printf("Enter the coordinate x and y of the circle and the radius and both the stroke's color and fill color\n");
         for(int i = 0;i < 3; i++)
-            scanf("%d", newData);
-        scanf("%s", newStyle);
-        scanf("%s", newStyle);
+            scanf("%d", &newData[i]);
+        scanf("%s", &newStyle[0]);
+        scanf("%s", &newStyle[1]);
     }
 
-    else if (strcmp(actualName, "Elipse")) 
+    else if (!strcmp(actualName, "Elipse")) 
     {
         printf("Enter the coordinate x and y of the elipse and the radius at x and y coordinate and both the stroke's color and fill color\n");
         for(int i = 0;i < 4; i++)
-            scanf("%d", newData);
-        scanf("%s", newStyle);
-        scanf("%s", newStyle);
+            scanf("%d", &newData[i]);
+        scanf("%s", &newStyle[0]);
+        scanf("%s", &newStyle[1]);
     }
     
-    else if (strcmp(actualName, "Line")) 
+    else if (!strcmp(actualName, "Line")) 
     {
         printf("Enter the coordinate x and y of the first point and the coordinate x and y of the second point and the stroke's color\n");
         for(int i = 0;i < 4; i++)
-            scanf("%d", newData);
-        scanf("%s", newStyle);
+            scanf("%d", &newData[i]);
+        scanf("%s", &newStyle[0]);
     }
     
-    else if (strcmp(actualName, "Rectangle")) 
+    else if (!strcmp(actualName, "Rectangle")) 
     {
         printf("Enter the coordinate x and y of the rectangle and the width and height of it and both the stroke's color and fill color\n");
         for(int i = 0;i < 4; i++)
-            scanf("%d", newData);
-        scanf("%s", newStyle);
-        scanf("%s", newStyle);
+            scanf("%d", &newData[i]);
+        scanf("%s", &newStyle[0]);
+        scanf("%s", &newStyle[1]);
     }
     
     liveStyle->data = &newStyle;
     liveValue->data = newData;
-    free(newData);
-    free(newStyle);
 }

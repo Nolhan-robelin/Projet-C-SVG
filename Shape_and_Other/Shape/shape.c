@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../Shape/circle.h"
 #include "../Shape/elipse.h"
 #include "../Shape/line.h"
@@ -7,7 +8,7 @@
 #include "../Shape/Shape_modifier/node.h"
 
 
-int circle(int nbForm, NodeName*** listName, NodeValue*** listValue, NodeStyle*** listStyle)
+int circle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** listStyle)
 {
     circle_t newCircle;
 
@@ -19,21 +20,26 @@ int circle(int nbForm, NodeName*** listName, NodeValue*** listValue, NodeStyle**
     scanf("%d", &newCircle.x);
     scanf("%d", &newCircle.y);
     scanf("%d", &newCircle.radius);
-    scanf("%s", newCircle.fill);
-    scanf("%s", newCircle.stroke);
+    scanf("%19s", newCircle.fill);
+    scanf("%19s", newCircle.stroke);
 
     nbForm++;
 
-    char* style[] = {newCircle.fill, newCircle.stroke};
-    char name[] = {"Circle"};
-    int values[] = {nbForm, newCircle.x, newCircle.y, newCircle.radius};
+    char* style = malloc(sizeof(char*) * 2);
+    style[0] = newCircle.fill;
+    style[1] = newCircle.stroke;
+    char* name = malloc(strlen("Circle")+1);
+    name[0] = "Circle";
+    int* values = malloc(sizeof(int) * 4);
+    values[0] = nbForm;
+    values[1] = newCircle.x;
+    values[2] = newCircle.y;
+    values[3] = newCircle.radius;
 
     *listName = insertHeadName(&listName, name);
     *listValue = insertHeadValue(&listValue, values);
     *listStyle = insertHeadStyle(&listStyle, style);
-    
-    free(newCircle.fill);
-    free(newCircle.stroke);
+
     return nbForm;
 }
 
@@ -60,7 +66,7 @@ char* addCircle(NodeValue* liveValue, NodeStyle* liveStyle)
 
 
 
-int elipse(int nbForm, NodeName*** listName, NodeValue*** listValue, NodeStyle*** listStyle)
+int elipse(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** listStyle)
 {
     elipse_t newElipse;
 
@@ -74,13 +80,21 @@ int elipse(int nbForm, NodeName*** listName, NodeValue*** listValue, NodeStyle**
     scanf("%d", &newElipse.cy);
     scanf("%d", &newElipse.rx);
     scanf("%d", &newElipse.ry);
-    scanf("%s", newElipse.fill);
-    scanf("%s", newElipse.stroke);
+    scanf("%19s", newElipse.fill);
+    scanf("%19s", newElipse.stroke);
     nbForm++;
     
-    char* style[] = {newElipse.fill, newElipse.stroke};
-    char name[] = {"Elipse"};
-    int values[] = {nbForm, newElipse.cx, newElipse.cy, newElipse.rx, newElipse.ry};
+    char* style = malloc(sizeof(char*) * 2);
+    style[0] = newElipse.fill;
+    style[1] = newElipse.stroke;
+    int* values = malloc(sizeof(int) * 4);
+    values[0] = nbForm;
+    values[1] = newElipse.cx;
+    values[2] = newElipse.cy;
+    values[3] = newElipse.rx;
+    values[4] = newElipse.ry;    
+    char* name = malloc(strlen("Rectangle") + 1);
+    name[0] = "Rectangle";
     *listName = insertHeadName(&listName, name);
     *listValue = insertHeadValue(&listValue, values);
     *listStyle = insertHeadStyle(&listStyle, style);
@@ -115,7 +129,7 @@ char* addElipse(NodeValue* liveValue, NodeStyle* liveStyle)
 
 
 
-int line(int nbForm, NodeName*** listName, NodeValue*** listValue, NodeStyle*** listStyle)
+int line(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** listStyle)
 {
     line_t newLine;
 
@@ -128,12 +142,19 @@ int line(int nbForm, NodeName*** listName, NodeValue*** listValue, NodeStyle*** 
     scanf("%d", &newLine.x2);
     scanf("%d", &newLine.y1);
     scanf("%d", &newLine.y2);
-    scanf("%s", newLine.stroke);
+    scanf("%19s", newLine.stroke);
     nbForm++;
     
-    char* style[] = {newLine.stroke};
-    char name[] = {"Line"};
-    int values[] = {nbForm, newLine.x1, newLine.x2, newLine.y1, newLine.y2};
+    char* style = malloc(sizeof(char*) * 1);
+    style[0] = newLine.stroke;
+    int* values = malloc(sizeof(int) * 4);
+    values[0] = nbForm;
+    values[1] = newLine.x1;
+    values[2] = newLine.x2;
+    values[3] = newLine.y1;
+    values[4] = newLine.y2;    
+    char* name = malloc(strlen("Rectangle") + 1);
+    name[0] = "Rectangle";
     *listName = insertHeadName(&listName, name);
     *listValue = insertHeadValue(&listValue, values);
     *listStyle = insertHeadStyle(&listStyle, style);
@@ -167,7 +188,7 @@ char* addLine(NodeValue* liveValue, NodeStyle* liveStyle)
 
 
 
-int rectangle(int nbForm, NodeName*** listName, NodeValue*** listValue, NodeStyle*** listStyle)
+int rectangle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** listStyle)
 {
     rectangle_t newRectangle;
 
@@ -181,13 +202,21 @@ int rectangle(int nbForm, NodeName*** listName, NodeValue*** listValue, NodeStyl
     scanf("%d", &newRectangle.y);
     scanf("%d", &newRectangle.width);
     scanf("%d", &newRectangle.height);
-    scanf("%s", newRectangle.fill);
-    scanf("%s", newRectangle.stroke);
+    scanf("%19s", newRectangle.fill);
+    scanf("%19s", newRectangle.stroke);
     nbForm++;
     
-    char* style[] = {newRectangle.fill, newRectangle.stroke};
-    int values[] = {nbForm, newRectangle.x, newRectangle.y, newRectangle.width, newRectangle.height};
-    char name[] = {"Rectangle"};
+    char* style = malloc(sizeof(char*) * 2);
+    style[0] = newRectangle.fill;
+    style[1] = newRectangle.stroke;
+    int* values = malloc(sizeof(int) * 4);
+    values[0] = nbForm;
+    values[1] = newRectangle.x;
+    values[2] = newRectangle.y;
+    values[3] = newRectangle.width;
+    values[4] = newRectangle.height;    
+    char* name = malloc(strlen("Rectangle") + 1);
+    name[0] = "Rectangle";
     *listName = insertHeadName(&listName, name);
     *listValue = insertHeadValue(&listValue, values);
     *listStyle = insertHeadStyle(&listStyle, style);

@@ -37,7 +37,7 @@ int viewFile(NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
     while (index[0] != 0) {
         printf("Test3 export svg");
         char* actualName = liveName->data;
-        if (strcmp(actualName, "Circle")) 
+        if (!strcmp(actualName, "Circle")) 
         {
             circ = addCircle(liveValue, liveStyle);
             printf("Test4 export svg");
@@ -46,19 +46,19 @@ int viewFile(NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
             free(circ);
             printf("Test6 export svg");
         }
-        else if (strcmp(actualName, "Elipse")) 
+        else if (!strcmp(actualName, "Elipse")) 
         {
             elip = addElipse(liveValue, liveStyle);
             strcat(dataP, elip); 
             free(elip);
         }
-        else if (strcmp(actualName, "Line"))
+        else if (!strcmp(actualName, "Line"))
         { 
             line = addLine(liveValue, liveStyle);
             strcat(dataP, line); 
             free(line);
         }
-        else if (strcmp(actualName, "Rectangle"))
+        else if (!strcmp(actualName, "Rectangle"))
         { 
             rect = addRectangle(liveValue, liveStyle);
             strcat(dataP, rect);
@@ -73,6 +73,7 @@ int viewFile(NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
     strcat(dataP, endDataP);
     fputs(dataP, fptr);
     fclose(fptr);
+    free(dataP);
     return 1;
     }
 
@@ -86,11 +87,13 @@ int openFile(void)
     if(fptr == NULL) {
         printf("The file did not opened.\n");
         printf("You may retry");
+        fclose(fptr); 
         return 0;
     }
     else
     {
         printf("File successfully opened\n");
+        fclose(fptr); 
         return 1;
     }
     fclose(fptr);         
