@@ -10,7 +10,7 @@ int viewFile(NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
 {
     // Function which will create a file 
     FILE* fptr;
-    fptr = fopen("projet.html", "w");
+    fptr = fopen("svgVisual.svg", "w");
                                 
     if(fptr == NULL) {
         printf("The file did not opened.\n");
@@ -22,8 +22,9 @@ int viewFile(NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
     {  
         printf("The file got created successfully\n");
         char* dataP = malloc(sizeof(char) * 1000);
-        dataP = "<svg xmlns='http://www.w3.org/2000/svg' width='150' height='100' viewBox='-400 400 200 -200>";
+        strcpy(dataP, "<svg xmlns='http://www.w3.org/2000/svg' width='150' height='100' viewBox='-400 400 200 -200'>");
         
+    printf("Test export svg");
     NodeValue* liveValue = listValue;
     NodeName* liveName = listName;
     NodeStyle* liveStyle = listStyle;
@@ -32,15 +33,18 @@ int viewFile(NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
     char* elip;
     char* line;
     char* rect;
-    
+    printf("Test2 export svg");
     while (index[0] != 0) {
-        
+        printf("Test3 export svg");
         char* actualName = liveName->data;
         if (strcmp(actualName, "Circle")) 
         {
             circ = addCircle(liveValue, liveStyle);
+            printf("Test4 export svg");
             strcat(dataP, circ);
+            printf("Test5 export svg");
             free(circ);
+            printf("Test6 export svg");
         }
         else if (strcmp(actualName, "Elipse")) 
         {
@@ -88,5 +92,6 @@ int openFile(void)
     {
         printf("File successfully opened\n");
         return 1;
-    }         
+    }
+    fclose(fptr);         
 }

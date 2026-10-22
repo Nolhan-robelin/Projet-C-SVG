@@ -4,6 +4,6 @@
 
 int mainMenu(void);
 
-int formChoice(int nbForm, NodeName* listName, NodeValue* listValue, NodeStyle* listStyle);
+int formChoice(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** listStyle);
 
 #endif

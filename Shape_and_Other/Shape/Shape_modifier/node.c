@@ -37,36 +37,40 @@ NodeStyle* createNodeStyle(char** style) {
     return new;
 }
 
-NodeValue* insertHeadValue(NodeValue* head, int value[]) {
+NodeValue* insertHeadValue(NodeValue** head, int value[]) {
     NodeValue* new = createNodeValue(value);
     new->next = head; 
     return new;       
 }
 
-NodeName* insertHeadName(NodeName* head, char name[]) {
+NodeName* insertHeadName(NodeName** head, char name[]) {
     NodeName* new = createNodeName(name);
     new->next = head; 
     return new;
 }
 
-NodeStyle* insertHeadStyle(NodeStyle* head, char* style[]) {
+NodeStyle* insertHeadStyle(NodeStyle** head, char* style[]) {
     NodeStyle* new = createNodeStyle(style);
     new->next = head; 
     return new;
 }
 
-void formList(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle) {
+void formList(int nbForm, NodeValue* headValue, NodeName* headName, NodeStyle* headStyle) {
     NodeValue* liveValue = headValue;
     NodeName* liveName = headName;
     NodeStyle* liveStyle = headStyle;
+    
     int* index = liveValue->data;
+    printf("Test entreé fonction index : %d valeur de nbForm: %d \n", index[0], nbForm);
     
     while (index[0] != 0) {
-        
+        printf("Test2 entreé fonction");
         char* actualName = liveName->data;
         if (strcmp(actualName, "Circle")) 
+        {
             viewCircle(liveValue, liveName, liveStyle);
-
+            printf("Test3 entreé fonction");
+        }
         else if (strcmp(actualName, "Elipse")) 
             viewElipse(liveValue, liveName, liveStyle);
 
@@ -79,10 +83,11 @@ void formList(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle) {
         liveName = liveName->next;
         liveValue = liveValue->next;
         liveStyle = liveStyle->next;
+        index = liveValue->data;
     }
 }
 
-void freeList(int index, NodeValue* headValue, NodeName* headName, NodeStyle* headStyle) {
+void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle) {
     
     NodeValue* delValue;
     NodeName* delName;
@@ -96,6 +101,11 @@ void freeList(int index, NodeValue* headValue, NodeName* headName, NodeStyle* he
     NodeName* tempName = NULL;
     NodeStyle* tempStyle = NULL;
 
+    int index;
+
+    printf("Which shape do you want to modify(Index)\n");
+    scanf("%d", &index);
+
     int* actualindex = liveValue->data;
     
     while (actualindex[0] != index - 1) {
@@ -106,6 +116,8 @@ void freeList(int index, NodeValue* headValue, NodeName* headName, NodeStyle* he
         liveValue = tempValue;
         liveName = tempName;
         liveStyle = tempStyle;
+
+        actualindex = liveValue->data;
     }
     
     delValue = liveValue->next;
@@ -125,7 +137,7 @@ void freeList(int index, NodeValue* headValue, NodeName* headName, NodeStyle* he
     free(delStyle);
 }
 
-void modifyShape(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle)
+void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle)
 {
     NodeValue* liveValue = headValue;
     NodeValue* tempValue = NULL;
@@ -146,17 +158,21 @@ void modifyShape(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle)
     while (actualindex[0] != index) {
         tempValue = liveValue->next;
         liveValue = tempValue;
+
         tempName = liveName->next;
         liveName = tempName;
+
         tempStyle = liveStyle->next;
         liveStyle = tempStyle;
+
+        actualindex = liveValue->data;
     }
     
     char* actualName = liveName->data;
 
     if (strcmp(actualName,"Circle")) 
     {
-        printf("Enter the coordinate x and y of the circle and the radius\n");
+        printf("Enter the coordinate x and y of the circle and the radius and both the stroke's color and fill color\n");
         for(int i = 0;i < 3; i++)
             scanf("%d", newData);
         scanf("%s", newStyle);
@@ -165,7 +181,7 @@ void modifyShape(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle)
 
     else if (strcmp(actualName, "Elipse")) 
     {
-        printf("Enter the coordinate x and y of the elipse and the radius at x and y coordinate\n");
+        printf("Enter the coordinate x and y of the elipse and the radius at x and y coordinate and both the stroke's color and fill color\n");
         for(int i = 0;i < 4; i++)
             scanf("%d", newData);
         scanf("%s", newStyle);
@@ -174,7 +190,7 @@ void modifyShape(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle)
     
     else if (strcmp(actualName, "Line")) 
     {
-        printf("Enter the coordinate x and y of the first point and the coordinate x and y of the second point\n");
+        printf("Enter the coordinate x and y of the first point and the coordinate x and y of the second point and the stroke's color\n");
         for(int i = 0;i < 4; i++)
             scanf("%d", newData);
         scanf("%s", newStyle);
@@ -182,7 +198,7 @@ void modifyShape(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle)
     
     else if (strcmp(actualName, "Rectangle")) 
     {
-        printf("Enter the coordinate x and y of the rectangle and the width and height of it\n");
+        printf("Enter the coordinate x and y of the rectangle and the width and height of it and both the stroke's color and fill color\n");
         for(int i = 0;i < 4; i++)
             scanf("%d", newData);
         scanf("%s", newStyle);

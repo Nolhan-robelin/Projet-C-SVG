@@ -22,16 +22,16 @@ NodeStyle* createNodeStyle(char** style);
 
 NodeValue* createNodeValue(int* value);
 
-NodeValue* insertHeadValue(NodeValue* head, int value[]);
+NodeValue* insertHeadValue(NodeValue** head, int value[]);
 
-NodeName* insertHeadName(NodeName* head, char name[]);
+NodeName* insertHeadName(NodeName** head, char name[]);
 
-NodeStyle* insertHeadStyle(NodeStyle* head, char* name[]);
+NodeStyle* insertHeadStyle(NodeStyle** head, char* name[]);
 
-void formList(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle);
+void formList(int nbForm, NodeValue* headValue, NodeName* headName, NodeStyle* headStyle);
 
-void freeList(int index, NodeValue* headValue, NodeName* headName, NodeStyle* headStyle);
+void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle);
 
-void modifyShape(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle);
+void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle);
 
 #endif
