@@ -35,7 +35,7 @@ int viewFile(NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
     char* rect;
   
     while (index[0] != 0) {
-        printf("Test3 export svg");
+    
         char* actualName = liveName->data;
         if (!strcmp(actualName, "Circle")) 
         {
@@ -65,6 +65,7 @@ int viewFile(NodeName* listName, NodeValue* listValue, NodeStyle* listStyle)
         
     liveName = liveName->next;
     liveValue = liveValue->next;
+    liveStyle = liveStyle->next;
     index = liveValue->data;
     }
     char* endDataP = "</svg>";

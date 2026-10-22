@@ -85,6 +85,23 @@ void formList(NodeValue* headValue, NodeName* headName, NodeStyle* headStyle) {
     }
 }
 
+void updateIndex(NodeValue* head)
+{
+    int actual = 1;
+    NodeValue* temp = head;
+
+    while(temp != NULL)
+    {
+        int* data = temp->data;
+
+        if(data[0] == 0)
+            break;
+
+        data[0] = actual++;
+        temp = temp->next;
+    }
+}
+
 void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle) {
     
     NodeValue* delValue;
@@ -101,12 +118,12 @@ void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle)
 
     int index;
 
-    printf("Which shape do you want to modify(Index)\n");
+    printf("Which shape do you want to delete (Index required)\n");
     scanf("%d", &index);
 
     int* actualindex = liveValue->data;
     
-    while (actualindex[0] != index - 1) {
+    while (liveValue != NULL && actualindex[0] != index - 1) {
         tempValue = liveValue->next;
         tempName = liveName->next;
         tempStyle = liveStyle->next;
@@ -133,7 +150,7 @@ void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle)
     free(delName->data);
     free(delValue->data);
 
-    char* actualName = liveName->data;
+    char* actualName = delName->data;
     free(delStyle->data[0]);
     if (strcmp(actualName ,"Line"))
         free(delStyle->data[1]);
@@ -142,6 +159,8 @@ void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle)
     free(delName);
     free(delValue);
     free(delStyle);
+
+    updateIndex(*headValue);
 }
 /**
  * Modifies a shape in the list
@@ -164,8 +183,10 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
     newStyle[1] = malloc(20);  
     int index;
 
-    printf("Which shape do you want to modify(Index)\n");
+    printf("Which shape do you want to modify(Index required)\n");
     scanf("%d", &index);
+    
+    newData[0] = index;
     
     int* actualindex = liveValue->data;
     
@@ -187,7 +208,7 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
     if (!strcmp(actualName,"Circle")) 
     {
         printf("Enter the coordinate x and y of the circle and the radius and both the stroke's color and fill color\n");
-        for(int i = 0;i < 3; i++)
+        for(int i = 1;i < 4; i++)
             scanf("%d", &newData[i]);
         scanf("%19s", newStyle[0]);
         scanf("%19s", newStyle[1]);
@@ -196,7 +217,7 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
     else if (!strcmp(actualName, "Elipse")) 
     {
         printf("Enter the coordinate x and y of the elipse and the radius at x and y coordinate and both the stroke's color and fill color\n");
-        for(int i = 0;i < 4; i++)
+        for(int i = 1;i < 5; i++)
             scanf("%d", &newData[i]);
         scanf("%19s", newStyle[0]);
         scanf("%19s", newStyle[1]);
@@ -205,7 +226,7 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
     else if (!strcmp(actualName, "Line")) 
     {
         printf("Enter the coordinate x and y of the first point and the coordinate x and y of the second point and the stroke's color\n");
-        for(int i = 0;i < 4; i++)
+        for(int i = 1;i < 5; i++)
             scanf("%d", &newData[i]);
         scanf("%19s", newStyle[0]);
     }
@@ -213,7 +234,7 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
     else if (!strcmp(actualName, "Rectangle")) 
     {
         printf("Enter the coordinate x and y of the rectangle and the width and height of it and both the stroke's color and fill color\n");
-        for(int i = 0;i < 4; i++)
+        for(int i = 1;i < 5; i++)
             scanf("%d", &newData[i]);
         scanf("%19s", newStyle[0]);
         scanf("%19s", newStyle[1]);
