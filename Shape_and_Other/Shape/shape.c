@@ -21,9 +21,12 @@ int circle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** l
 
     newCircle.fill = malloc(sizeof(char)*20);
     newCircle.stroke = malloc(sizeof(char)*20);
+    
+    system("clear");
     printf("What are the coordinate x and y of the circle and the radius\n");
     printf("Then enter the color of the stroke and the color you want to fill the shape\n");
     printf("Press Enter between each values\n");
+    
     scanf("%d", &newCircle.x);
     clear_buffer();
     scanf("%d", &newCircle.y);
@@ -104,9 +107,11 @@ int elipse(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** l
     newElipse.fill = malloc(sizeof(char)*20);
     newElipse.stroke = malloc(sizeof(char)*20);
 
+    system("clear");
     printf("What are the coordinate x and y of the elipse and the radius at x and y coordinate\n");
     printf("Then enter the color of the stroke and the color you want to fill the shape\n");
     printf("Press Enter between each values\n");
+    
     scanf("%d", &newElipse.cx);
     clear_buffer();
     scanf("%d", &newElipse.cy);
@@ -188,9 +193,12 @@ int line(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** lis
 
     newLine.stroke = malloc(sizeof(char)*20);
 
+    system("clear");
     printf("What are the coordinate x and y of the first point and the coordinate x and y of the second point\n");
     printf("Then enter the color of the stroke\n");
     printf("Press Enter between each values\n");
+    
+    
     scanf("%d", &newLine.x1);
     clear_buffer();
     scanf("%d", &newLine.x2);
@@ -270,9 +278,11 @@ int rectangle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle*
     newRectangle.fill = malloc(sizeof(char)*20);
     newRectangle.stroke = malloc(sizeof(char)*20);
 
+    system("clear");
     printf("What are the coordinate x and y of the rectangle and the width and height of it\n");
     printf("Then enter the color of the stroke and the color you want to fill the shape\n");
     printf("Press Enter between each values\n");
+
     scanf("%d", &newRectangle.x);
     clear_buffer();
     scanf("%d", &newRectangle.y);

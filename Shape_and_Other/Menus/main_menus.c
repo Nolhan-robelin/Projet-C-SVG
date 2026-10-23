@@ -32,7 +32,7 @@ do {
                                 correctFile = 'y';
                                       
                                     do {
-                                        printf("\n");
+                                        system("clear");
                                         formList(listValue, listName, listStyle);
                                         printf("What do you want to do?\n");
                                         printf("1 to create a new form\n");
@@ -81,7 +81,7 @@ int formChoice(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle
         
         int form;
         int choice;
-
+        system("clear");
         printf("What do you need  ?\n");
         printf("1 for a circle or an elipse\n");
         printf("2 for a rectangle \n");
