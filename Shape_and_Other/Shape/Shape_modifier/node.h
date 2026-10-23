@@ -16,6 +16,8 @@ typedef struct NodeStyle {
     struct NodeStyle* next; 
 } NodeStyle;
 
+void clear_buffer(void);
+
 NodeName* createNodeName(char* name);
 
 NodeStyle* createNodeStyle(char** style);

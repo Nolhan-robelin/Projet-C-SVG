@@ -4,6 +4,16 @@
 #include "../shape.h"
 #include "string.h"
 
+
+void clear_buffer(void)
+{
+    char c = 'a';
+    while (c != '\n' && c != EOF)
+    {
+        c = getc(stdin);
+    }
+}
+
 /** @brief Creates a new node for storing shape values
  * @param value Pointer to the value to store
  * @return Pointer to the new node
@@ -146,10 +156,6 @@ void updateIndex(NodeValue* head)
  * @return None
  */
 void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle) {
-    
-    NodeValue* delValue;
-    NodeName* delName;
-    NodeStyle* delStyle;
 
     NodeValue* liveValue = *headValue;
     NodeName* liveName = *headName;
@@ -167,41 +173,47 @@ void freeList(NodeValue** headValue, NodeName** headName, NodeStyle** headStyle)
     int* actualindex = liveValue->data;
     
     while (liveValue != NULL && actualindex[0] != index) {
-        tempValue = liveValue->next;
-        tempName = liveName->next;
-        tempStyle = liveStyle->next;
+        tempValue = liveValue;
+        tempName = liveName;
+        tempStyle = liveStyle;
 
-        liveValue = tempValue;
-        liveName = tempName;
-        liveStyle = tempStyle;
+        liveValue = liveValue->next;
+        liveName = liveName->next;
+        liveStyle = liveStyle->next;
 
-        actualindex = liveValue->data;
+    actualindex = liveValue->data;
+    }
+    if (tempValue == NULL)
+    {
+    *headValue = liveValue->next;
+    *headName = liveName->next;
+    *headStyle = liveStyle->next;
+    }
+  else
+    {
+    tempName->next = liveName->next;
+    tempValue->next = liveValue->next;
+    tempStyle->next = liveStyle->next;
     }
     
-    delValue = liveValue->next;
-    delName = liveName->next;
-    delStyle = liveStyle->next;
-
-    tempName = delName->next;
-    tempValue = delValue->next;
-    tempStyle = delStyle->next;
     
     liveName->next = tempName;
     liveValue->next = tempValue;
     liveStyle->next = tempStyle;
 
-    free(delName->data);
-    free(delValue->data);
+    char* actualName = liveName->data;
 
-    char* actualName = delName->data;
-    free(delStyle->data[0]);
+    free(liveName->data);
+    free(liveValue->data);
+
+    free(liveStyle->data[0]);
     if (strcmp(actualName ,"Line"))
-        free(delStyle->data[1]);
-    free(delStyle->data);
+        free(liveStyle->data[1]);
+    free(liveStyle->data);
 
-    free(delName);
-    free(delValue);
-    free(delStyle);
+    free(liveName);
+    free(liveValue);
+    free(liveStyle);
 
     updateIndex(*headValue);
 }
@@ -252,35 +264,54 @@ void modifyShape(NodeValue** headValue, NodeName** headName, NodeStyle** headSty
     {
         printf("Enter the coordinate x and y of the circle and the radius and both the stroke's color and fill color\n");
         for(int i = 1;i < 4; i++)
+        {
             scanf("%d", &newData[i]);
+            clear_buffer();
+        }
         scanf("%19s", newStyle[0]);
+        clear_buffer();
         scanf("%19s", newStyle[1]);
+        clear_buffer();
     }
 
     else if (!strcmp(actualName, "Elipse")) 
     {
         printf("Enter the coordinate x and y of the elipse and the radius at x and y coordinate and both the stroke's color and fill color\n");
         for(int i = 1;i < 5; i++)
+        {
             scanf("%d", &newData[i]);
+            clear_buffer();
+        }
         scanf("%19s", newStyle[0]);
+        clear_buffer();
         scanf("%19s", newStyle[1]);
+        clear_buffer();
     }
     
     else if (!strcmp(actualName, "Line")) 
     {
         printf("Enter the coordinate x and y of the first point and the coordinate x and y of the second point and the stroke's color\n");
         for(int i = 1;i < 5; i++)
+        {
             scanf("%d", &newData[i]);
+            clear_buffer();
+        }
         scanf("%19s", newStyle[0]);
+        clear_buffer();
     }
     
     else if (!strcmp(actualName, "Rectangle")) 
     {
         printf("Enter the coordinate x and y of the rectangle and the width and height of it and both the stroke's color and fill color\n");
         for(int i = 1;i < 5; i++)
+        {
             scanf("%d", &newData[i]);
+            clear_buffer();
+        }
         scanf("%19s", newStyle[0]);
+        clear_buffer();
         scanf("%19s", newStyle[1]);
+        clear_buffer();
     }
     
     liveStyle->data = newStyle;

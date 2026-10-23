@@ -25,10 +25,15 @@ int circle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** l
     printf("Then enter the color of the stroke and the color you want to fill the shape\n");
     printf("Press Enter between each values\n");
     scanf("%d", &newCircle.x);
+    clear_buffer();
     scanf("%d", &newCircle.y);
+    clear_buffer();
     scanf("%d", &newCircle.radius);
+    clear_buffer();
     scanf("%19s", newCircle.fill);
+    clear_buffer();
     scanf("%19s", newCircle.stroke);
+    clear_buffer();
 
     nbForm++;
 
@@ -103,11 +108,17 @@ int elipse(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** l
     printf("Then enter the color of the stroke and the color you want to fill the shape\n");
     printf("Press Enter between each values\n");
     scanf("%d", &newElipse.cx);
+    clear_buffer();
     scanf("%d", &newElipse.cy);
+    clear_buffer();
     scanf("%d", &newElipse.rx);
+    clear_buffer();
     scanf("%d", &newElipse.ry);
+    clear_buffer();
     scanf("%19s", newElipse.fill);
+    clear_buffer();
     scanf("%19s", newElipse.stroke);
+    clear_buffer();
     nbForm++;
     
     char** style = malloc(sizeof(char*) * 2);
@@ -181,10 +192,15 @@ int line(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle** lis
     printf("Then enter the color of the stroke\n");
     printf("Press Enter between each values\n");
     scanf("%d", &newLine.x1);
+    clear_buffer();
     scanf("%d", &newLine.x2);
+    clear_buffer();
     scanf("%d", &newLine.y1);
+    clear_buffer();
     scanf("%d", &newLine.y2);
+    clear_buffer();
     scanf("%19s", newLine.stroke);
+    clear_buffer();
     nbForm++;
     
     char** style = malloc(sizeof(char*) * 2);
@@ -258,11 +274,17 @@ int rectangle(int nbForm, NodeName** listName, NodeValue** listValue, NodeStyle*
     printf("Then enter the color of the stroke and the color you want to fill the shape\n");
     printf("Press Enter between each values\n");
     scanf("%d", &newRectangle.x);
+    clear_buffer();
     scanf("%d", &newRectangle.y);
+    clear_buffer();
     scanf("%d", &newRectangle.width);
+    clear_buffer();
     scanf("%d", &newRectangle.height);
+    clear_buffer();
     scanf("%19s", newRectangle.fill);
+    clear_buffer();
     scanf("%19s", newRectangle.stroke);
+    clear_buffer();
     nbForm++;
     
     char** style = malloc(sizeof(char*) * 2);
